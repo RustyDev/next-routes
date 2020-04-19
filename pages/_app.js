@@ -1,8 +1,8 @@
-import React from 'react'
-import App from 'next/app'
-import { createOvermind, createOvermindSSR, rehydrate } from 'overmind'
-import { Provider } from 'overmind-react'
-import { config } from '../overmind'
+import React from "react"
+import App from "next/app"
+import { createOvermind, createOvermindSSR, rehydrate } from "overmind"
+import { Provider } from "overmind-react"
+import { config } from "../overmind"
 
 class MyApp extends App {
   // CLIENT: On initial route
@@ -12,7 +12,7 @@ class MyApp extends App {
 
     const mutations = props.pageProps.mutations || []
 
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       // On the client we just instantiate the Overmind instance and run
       // the "changePage" action
       this.overmind = createOvermind(config)
@@ -37,7 +37,7 @@ class MyApp extends App {
 
     return (
       <Provider value={this.overmind}>
-        <Component />
+        <Component {...this.props} />
       </Provider>
     )
   }
