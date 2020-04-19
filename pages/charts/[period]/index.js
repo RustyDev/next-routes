@@ -34,7 +34,7 @@ const Charts = (props) => {
         </nav>
 
         <div>Hi, {user.name.first}</div>
-        <p>Charts: {start}</p>
+        <p>Current Page: {start}</p>
         <div className="pagination">
           {start > 0 && (
             <Link
@@ -44,6 +44,7 @@ const Charts = (props) => {
               <a>Prev</a>
             </Link>
           )}
+          {start <= 0 && <a className="disabled">Prev</a>}
           <Link
             href={`/charts/[period]/[start]`}
             as={`/charts/${period}/${next}`}
@@ -63,6 +64,11 @@ const Charts = (props) => {
           }
           .pagination a + a {
             margin-left: 1rem;
+          }
+          .disabled {
+            opacity: 0.5;
+            color: #000;
+            text-decoration: none;
           }
         `}</style>
       </div>

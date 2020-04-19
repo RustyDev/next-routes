@@ -3,6 +3,7 @@ import App from "next/app"
 import { createOvermind, createOvermindSSR, rehydrate } from "overmind"
 import { Provider } from "overmind-react"
 import { config } from "../overmind"
+import "../public/style.css"
 
 class MyApp extends App {
   // CLIENT: On initial route
@@ -41,6 +42,8 @@ class MyApp extends App {
         <style global jsx>{`
           body {
             font-family: sans-serif;
+            max-width: 1024px;
+            margin: 3rem auto;
           }
           a {
             text-decoration: none;
