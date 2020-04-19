@@ -28,14 +28,14 @@ const Charts = (props) => {
         <div className="pagination">
           {start > 0 && (
             <Link
-              href={`/charts/[period]/[...start]`}
+              href={`/charts/[period]/[start]`}
               as={`/charts/${period}/${previous}`}
             >
               <a>Prev</a>
             </Link>
           )}
           <Link
-            href={`/charts/[period]/[...start]`}
+            href={`/charts/[period]/[start]`}
             as={`/charts/${period}/${next}`}
           >
             <a>Next</a>

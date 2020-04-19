@@ -4,7 +4,7 @@ import { config } from "../overmind"
 import Header from "../components/Header"
 import Items from "../components/Items"
 
-export async function getServerProps() {
+export async function getServerSideProps() {
   // If we want to produce some mutations we do so by instantiating
   // an Overmind SSR instance, do whatever datafetching is needed and
   // change the state directly. We return the mutations performed with
