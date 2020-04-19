@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start"
   },
@@ -13,7 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "next": "latest",
+    "nextjs-dynamic-routes": "^2.5.1",
     "overmind": "^17.0.0-1551262265873",
     "overmind-react": "^18.0.0-1551262265873",
     "react": "^16.8.3",

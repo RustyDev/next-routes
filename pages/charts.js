@@ -1,34 +1,31 @@
 import React, { useState } from "react"
 import { useRouter } from "next/router"
-import Link from "next/link"
-import Header from "../../../components/Header"
+import { Link } from "../routes"
+import Header from "../components/Header"
 import axios from "axios"
 import { createOvermindSSR } from "overmind"
-import { config } from "../../../overmind"
+import { config } from "../overmind"
 
 const Charts = (props) => {
-  const router = useRouter()
-  let { period, start } = router.query
-  start = parseInt(start) || 0
+  const { user, period, start } = props.pageProps
   const previous = start - 1
   const next = start + 1
-  const { user } = props.pageProps
 
   if (!user) {
     return null
   } else {
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
 
         <nav className={`subnav ${period}`}>
-          <Link href={`/charts/[period]`} as={`/charts/weekly/`}>
+          <Link route="charts" period="weekly">
             <a className={`${period === "weekly" && "active"}`}>Weekly</a>
           </Link>
-          <Link href={`/charts/[period]`} as={`/charts/monthly/`}>
+          <Link route="charts" period="monthly">
             <a className={`${period === "monthly" && "active"}`}>Monthly</a>
           </Link>
-          <Link href={`/charts/[period]`} as={`/charts/yearly/`}>
+          <Link route="charts" period="yearly">
             <a className={`${period === "yearly" && "active"}`}>Yearly</a>
           </Link>
         </nav>
@@ -37,18 +34,12 @@ const Charts = (props) => {
         <p>Current Page: {start}</p>
         <div className="pagination">
           {start > 0 && (
-            <Link
-              href={`/charts/[period]/[start]`}
-              as={`/charts/${period}/${previous}`}
-            >
+            <Link route="charts" period={period} start={previous}>
               <a>Prev</a>
             </Link>
           )}
           {start <= 0 && <a className="disabled">Prev</a>}
-          <Link
-            href={`/charts/[period]/[start]`}
-            as={`/charts/${period}/${next}`}
-          >
+          <Link route="charts" period={period} start={next}>
             <a>Next</a>
           </Link>
         </div>
@@ -76,11 +67,13 @@ const Charts = (props) => {
   }
 }
 
-export async function getServerSideProps({ query }) {
+Charts.getInitialProps = async ({ query }) => {
   // If we want to produce some mutations we do so by instantiating
   // an Overmind SSR instance, do whatever datafetching is needed and
   // change the state directly. We return the mutations performed with
   // "hydrate"
+
+  console.log(query)
   const overmind = createOvermindSSR(config)
 
   overmind.state.page = "Charts"
@@ -90,12 +83,13 @@ export async function getServerSideProps({ query }) {
     .get("https://randomuser.me/api/")
     .then((res) => res.data.results[0])
 
+  let { period, start } = query
+  start = parseInt(start) || 0
   return {
-    props: {
-      mutations: overmind.hydrate(),
-      user: user,
-      period: query.period,
-    },
+    mutations: overmind.hydrate(),
+    user: user,
+    period,
+    start,
   }
 }
 
