@@ -14,6 +14,8 @@ const Charts = (props) => {
   const { user } = props.pageProps
   const period = "weekly"
 
+  console.log("next", next)
+
   if (!user) {
     return null
   } else {
@@ -49,11 +51,11 @@ const Charts = (props) => {
   }
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ query }) {
+  console.log(query)
   const user = await axios
     .get("https://randomuser.me/api/")
     .then((res) => res.data.results[0])
-  console.log(user)
   return {
     props: {
       user: user,
