@@ -10,13 +10,13 @@ function Header() {
       <h1>{state.page}</h1>
       <nav>
         <Link href="/">
-          <a>Home page</a>
+          <a className={state.page === "Index" && "active"}>Home page</a>
         </Link>
         <Link href="/about">
-          <a>About Page</a>
+          <a className={state.page === "About" && "active"}>About Page</a>
         </Link>
         <Link href={`/charts/[period]/`} as={`/charts/${state.charts.period}`}>
-          <a>Charts</a>
+          <a className={state.page === "Charts" && "active"}>Charts</a>
         </Link>
       </nav>
       <style jsx>{`
@@ -25,6 +25,9 @@ function Header() {
         }
         nav a + a {
           margin-left: 1rem;
+        }
+        .active {
+          font-weight: bold;
         }
       `}</style>
     </div>
