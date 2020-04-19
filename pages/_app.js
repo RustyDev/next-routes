@@ -38,6 +38,15 @@ class MyApp extends App {
     return (
       <Provider value={this.overmind}>
         <Component {...this.props} />
+        <style global jsx>{`
+          body {
+            font-family: sans-serif;
+          }
+          a {
+            text-decoration: none;
+            color: #336699;
+          }
+        `}</style>
       </Provider>
     )
   }

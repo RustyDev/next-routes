@@ -20,8 +20,11 @@ function Header() {
         </Link>
       </nav>
       <style jsx>{`
-        nav a {
-          display: block;
+        nav {
+          margin-bottom: 1rem;
+        }
+        nav a + a {
+          margin-left: 1rem;
         }
       `}</style>
     </div>

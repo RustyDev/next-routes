@@ -1,20 +1,23 @@
-import { rehydrate } from 'overmind'
-import { createHook } from 'overmind-react'
+import { rehydrate } from "overmind"
+import { createHook } from "overmind-react"
 
 export const config = {
   state: {
     page: null,
     items: [],
+    charts: {
+      period: "weekly",
+    },
   },
   actions: {
     changePage({ state }, mutations) {
       rehydrate(state, mutations || [])
 
       switch (state.page) {
-        case 'Index':
+        case "Index":
           // Do some additional logic
           break
-        case 'About':
+        case "About":
           // Do some additional logic
           break
         default:
