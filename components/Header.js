@@ -15,7 +15,7 @@ function Header() {
         <Link href="/about">
           <a>About Page</a>
         </Link>
-        <Link href={`/charts/[period]/`} as={`/charts/weekly`}>
+        <Link href={`/charts/[period]/`} as={`/charts/${state.charts.period}`}>
           <a>Charts</a>
         </Link>
       </nav>
