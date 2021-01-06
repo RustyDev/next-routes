@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "next": "latest",
     "overmind": "^17.0.0-1551262265873",
     "overmind-react": "^18.0.0-1551262265873",
